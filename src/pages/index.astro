@@ -1,14 +1,13 @@
 ---
 import StumblerCard from '../components/StumblerCard.astro';
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-import {stumblers} from '../utils/dataUtils.js';
+import { getStumblers } from '../utils/getStumblers.js';
+const all = await getStumblers();
 ---
 <Layout>
 	<div class="stumblers-container">
-		{stumblers.map((stumbler) => (
+		{all.map((stumbler) => (
 			<StumblerCard
-				imageUrl={stumbler.imageUrl}
 				imgId={stumbler.id}
 				stumblerName={stumbler.name}
 			/>
