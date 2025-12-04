@@ -1,12 +1,13 @@
 ---
 const subText = Astro.props.subText;
 const colorFondo = Astro.props.colorFondo;
+const numeroStumblers = Astro.props.numeroStumblers || 0;
 const backgroundColor = colorFondo || '#f4f7f9';
 ---
 
 <div class="main-title-container" style={`background-color: ${backgroundColor};`}>
     <h1>COLECCIÓN DE STUMBLERS DE JORDI</h1>
-    <h2>{subText}</h2>
+    <h2>{subText}: {numeroStumblers}</h2>
 </div>
 
 <style>
