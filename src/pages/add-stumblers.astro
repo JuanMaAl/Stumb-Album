@@ -1,10 +1,35 @@
 ---
-import StumblerCard from '../components/StumblerCard.astro';
 import Layout from '../layouts/Layout.astro';
-import { getStumblers } from '../utils/getStumblers.js';
-const all = await getStumblers();
+import ButtonPostStumbler from '../components/ButtonPostStumbler.astro';
 ---
 <Layout>
-	
-</Layout>
+    <div class="search-form-container">
+        <h2>Crear Stumbler</h2>
+        <form id="stumbler-creator-form"> <div class="form-group">
+                <label for="stumbler-name">Nombre:</label>
+                <input 
+                    type="text" 
+                    id="stumbler-name" 
+                    name="name" 
+                    placeholder="Ej. Inferno Dragon"
+                >
+            </div>
 
+            <div class="form-group">
+                <label for="stumbler-rarity">Rareza:</label>
+                <select id="stumbler-rarity" name="rarity">
+                    <option value="">-- Selecciona Rareza --</option> {
+                        [1, 2, 3, 4, 5, 6, 7].map((rarity) => (
+                            <option value={rarity}>{rarity}</option>
+                        ))
+                    }
+                </select>
+            </div>
+            
+        </form>
+        
+        <ButtonPostStumbler /> 
+        
+    </div>
+    
+    </Layout>

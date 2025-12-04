@@ -1,7 +1,6 @@
 ---
-const imgId = Astro.props.imgId;
 const stumblerName = Astro.props.stumblerName;
-const altMessage = imgId ? `Stumbler Card Image id: ${imgId}` : 'Stumbler Card Image';
+const altMessage = stumblerName ? `${stumblerName}` : 'Stumbler Card Image';
 const imgUrl = "src/assets/stumblers/" + stumblerName + ".png";
 ---
 

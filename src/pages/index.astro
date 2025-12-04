@@ -8,7 +8,6 @@ const all = await getStumblers();
 	<div class="stumblers-container">
 		{all.map((stumbler) => (
 			<StumblerCard
-				imgId={stumbler.id}
 				stumblerName={stumbler.name}
 			/>
 		))}

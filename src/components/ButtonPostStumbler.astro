@@ -1,0 +1,89 @@
+---
+// Importa la función de cliente (fetch) dentro del script de cliente, no aquí.
+// Aquí arriba puedes definir props si las necesitas, pero no es necesario para este caso.
+---
+
+<button id="post-stumbler-button" class="post-stumbler-button">
+    Agregar Stumbler
+</button>
+
+<style>
+    .post-stumbler-button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 15px;
+        width: 100%;
+    }
+    .post-stumbler-button:hover {
+        background-color: #1e7e34;
+    }
+</style>
+
+<script is:inline>
+    // 1. Define la función de post (fetch) dentro de este script
+    async function postStumbler(data) {
+        const response = await fetch('/api/my-stumblers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.details || `Error HTTP: ${response.status}`);
+        }
+        
+        // No devolvemos nada, solo confirmamos éxito.
+    }
+
+    // 2. Obtener referencias y configurar el evento al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        // Asegúrate de que los IDs coincidan con los de tu página principal
+        const nameInput = document.getElementById('stumbler-name');
+        const raritySelect = document.getElementById('stumbler-rarity');
+        const postButton = document.getElementById('post-stumbler-button');
+        
+        if (postButton && nameInput && raritySelect) {
+            postButton.addEventListener('click', async () => {
+                
+                const name = nameInput.value.trim();
+                // Usamos parseInt() para asegurarnos de que rarity sea un número
+                const rarity = parseInt(raritySelect.value); 
+                
+                // Validar campos
+                if (!name || isNaN(rarity) || raritySelect.value === "") {
+                    alert('Por favor, ingresa un nombre y selecciona una rareza válida.');
+                    return;
+                }
+
+                // Ejecutar la función POST
+                try {
+                    postButton.disabled = true; 
+                    postButton.textContent = 'Agregando...';
+
+                    await postStumbler({ name, rarity });
+                    
+                    alert(`Stumbler "${name}" (Rareza ${rarity}) agregado exitosamente!`);
+                    
+                    // Limpiar campos
+                    nameInput.value = '';
+                    raritySelect.value = '';
+
+                } catch (error) {
+                    console.error("Error al publicar Stumbler:", error);
+                    alert("Hubo un error al agregar el Stumbler: " + error.message);
+                } finally {
+                    postButton.disabled = false;
+                    postButton.textContent = 'Agregar Stumbler';
+                }
+            });
+        }
+    });
+</script>
