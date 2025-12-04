@@ -1,10 +1,12 @@
 ---
 import StumblerCard from '../components/StumblerCard.astro';
 import Layout from '../layouts/Layout.astro';
+import MainTitle from '../components/MainTitle.astro';
 import { getStumblers } from '../utils/getStumblers.js';
 const all = await getStumblers();
 ---
 <Layout>
+	<MainTitle subText="TODOS LOS STUMBLERS"></MainTitle>
 	<div class="stumblers-container">
 		{all.map((stumbler) => (
 			<StumblerCard
