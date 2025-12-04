@@ -1,11 +1,26 @@
 ---
+import StumblerCard from '../components/StumblerCard.astro';
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import {stumblers} from '../utils/dataUtils.js';
 ---
-
 <Layout>
-	
+	<div class="stumblers-container">
+		{stumblers.map((stumbler) => (
+			<StumblerCard
+				imageUrl={stumbler.imageUrl}
+				imgId={stumbler.id}
+				stumblerName={stumbler.name}
+			/>
+		))}
+	</div>
 </Layout>
+
+<style>
+	.stumblers-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 16px;
+		padding: 50px;
+	}
+</style>
