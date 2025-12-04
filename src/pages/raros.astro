@@ -4,11 +4,11 @@ import Layout from '../layouts/Layout.astro';
 import MainTitle from '../components/MainTitle.astro';
 import NavBar from '../components/NavBar.astro';
 import { getStumblers } from '../utils/getStumblers.js';
-const all = await getStumblers();
+const all = await getStumblers(3);
 const totalStumblers = all.length;
 ---
 <Layout>
-	<MainTitle subText="TODOS LOS STUMBLERS" numeroStumblers={totalStumblers}>		
+	<MainTitle subText="STUMBLERS RAROS" numeroStumblers={totalStumblers}>		
 	</MainTitle>
 	<NavBar></NavBar>
 	<div class="stumblers-container">

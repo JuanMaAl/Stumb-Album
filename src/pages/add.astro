@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ButtonPostStumbler from '../components/ButtonPostStumbler.astro';
+import NavBar from '../components/NavBar.astro';
+---
+<Layout>
+    <NavBar></NavBar>
+    <div class="search-form-container">
+        <h2>Crear Stumbler</h2>
+        <form id="stumbler-creator-form"> <div class="form-group">
+                <label for="stumbler-name">Nombre:</label>
+                <input 
+                    type="text" 
+                    id="stumbler-name" 
+                    name="name" 
+                    placeholder="Ej. Inferno Dragon"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="stumbler-rarity">Rareza:</label>
+                <select id="stumbler-rarity" name="rarity">
+                    <option value="">-- Selecciona Rareza --</option> {
+                        [1, 2, 3, 4, 5, 6, 7].map((rarity) => (
+                            <option value={rarity}>{rarity}</option>
+                        ))
+                    }
+                </select>
+            </div>
+            
+        </form>
+        
+        <ButtonPostStumbler /> 
+        
+    </div>
+    
+    </Layout>
+
+<style>
+    /* 1. Estilos del Contenedor Principal */
+    .search-form-container {
+        padding: 25px; /* Más padding interno */
+        max-width: 450px; /* Un poco más ancho */
+        margin: 40px auto; /* Centrar y añadir margen vertical */
+        border: 1px solid #e0e0e0; /* Borde más sutil */
+        border-radius: 12px; /* Bordes más redondeados */
+        background-color: #ffffff; /* Fondo blanco limpio */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave para un efecto elevado */
+    }
+    
+    /* 2. Estilos del Encabezado */
+    .search-form-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        border-bottom: 2px solid #007bff; /* Línea decorativa azul */
+        padding-bottom: 10px;
+        letter-spacing: 0.5px;
+    }
+
+    /* 3. Estilos de los Grupos de Formulario */
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600; /* Un poco más de peso */
+        color: #555;
+        font-size: 1em;
+    }
+    
+    /* 4. Estilos de los Campos de Entrada (Input y Select) */
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px; /* Bordes de campo redondeados */
+        box-sizing: border-box; 
+        font-size: 16px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        appearance: none; /* Mejorar el aspecto del select */
+    }
+
+    /* Efecto Focus (al hacer clic en el campo) */
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #007bff; /* Borde azul al enfocar */
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Sombra de enfoque sutil */
+        outline: none; /* Eliminar el contorno por defecto del navegador */
+    }
+    
+    /* Estilos para el select (añadir un ícono si es necesario) */
+    .form-group select {
+        /* Puedes añadir un icono de flecha personalizado aquí si lo deseas */
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        padding-right: 30px; /* Deja espacio para el ícono */
+    }
+
+    /* Asegurar que el botón importado se muestre bien debajo del formulario */
+    .search-form-container > button {
+        margin-top: 10px;
+        display: block;
+    }
+</style>

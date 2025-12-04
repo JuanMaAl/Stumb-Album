@@ -1,0 +1,46 @@
+---
+const subText = Astro.props.subText;
+const colorFondo = Astro.props.colorFondo;
+const numeroStumblers = Astro.props.numeroStumblers || 0;
+const backgroundColor = colorFondo || '#f4f7f9';
+---
+
+<div class="main-title-container" style={`background-color: ${backgroundColor};`}>
+    <h1>COLECCIÓN DE STUMBLERS DE JORDI</h1>
+    <h2>{subText}: {numeroStumblers}</h2>
+</div>
+
+<style>
+    /* Contenedor: Quitamos el background-color estático del CSS */
+    .main-title-container {
+        text-align: center;
+        padding: 40px 20px 20px;
+        border-bottom: 2px solid #e0e0e0;
+        margin-bottom: 30px;
+        /* Ya NO necesitamos 'background-color' aquí, se aplica con style="" */
+    }
+
+    /* Estilos para el Título Principal (h1) */
+    .main-title-container h1 {
+        /* Color azul oscuro elegante */
+        color: #004d99; 
+        font-size: 2.5em;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Estilos para el Subtítulo (h2) */
+    .main-title-container h2 {
+        /* Color gris oscuro para contraste suave */
+        color: #6c757d; 
+        font-size: 1.2em;
+        font-weight: 400;
+        margin: 0;
+        padding-bottom: 10px;
+        /* Estilo sutil */
+        border-bottom: 1px dashed #cccccc; 
+        display: inline-block;
+    }
+</style>
